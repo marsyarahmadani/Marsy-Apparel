@@ -43,11 +43,13 @@ kemudian menambahkan `main` ke dalam proyek dengan menambahkan `main` pada varia
     - `description` sebagai deskripsi item dengan tipe `TextField`.
 Sehingga isi berkas `models.py` seperti berikut ini:
 
-//masukkin foto
+![image](https://github.com/marsyarahmadani/Marsy-Apparel/assets/116958619/6f38c992-d558-4505-870e-0169322b229f)
+
 
 5. Ceklis kelima yaitu membuat fungsi pada `views.py` untuk dikembalikan ke dalam sebuah template HTML yang menampilkan nama aplikasi serta nama dan kelas. Untuk ini dapat diimplementasikan template `main.html` dan isi file tersebut seperti berikut:
 
-//masukkin foto
+![image](https://github.com/marsyarahmadani/Marsy-Apparel/assets/116958619/a5182a06-10e5-4b26-ab6b-e7acc8de6e63)
+
 
 
 kemudian untuk membuat `views.py ` mengeluarkan tampilan yang sesuai, maka edit pada file `views.py` untuk mengimport :
@@ -67,11 +69,12 @@ def show_main(request):
 
 6. Ceklis keenam yaitu membuat sebuah routing pada `urls.py` aplikasi main untuk memetakan fungsi yang telah dibuat pada `views.py`. Langkah pertama adalah membuat berkas `urls.py` di dalam direktori `main`. Lalu isi dengan kode seperti berikut:
 
-//masukkan foto
+![image](https://github.com/marsyarahmadani/Marsy-Apparel/assets/116958619/903f4a19-c170-493e-b73c-1ce832fd61f0)
+
 
 dan untuk menggabungkan dengan fungsi yang ada di `views.py`, tambahkan pada file `urls.py` pada direktori `MarsyApparel` dengan mengimpor `include` dan menambahkan rute URL baru, sehingga kode menjadi seperti berikut:
 
-//masukkan foto
+![image](https://github.com/marsyarahmadani/Marsy-Apparel/assets/116958619/66e7af81-879d-4de7-9363-d1ac7d10c1d6)
 
 
 7. Ceklis ketujuh yaitu melakukan deployment ke Adaptable terhadap aplikasi yang sudah dibuat sehingga nantinya dapat diakses oleh teman-temanmu melalui Internet. Setelah membuat akun Adaptable.io menggunakan akun github yang sama dengan akun yang memiliki repositori `Marsy-Apparel` selanjutnya adalah membuat app baru dengan cara:
