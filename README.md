@@ -47,6 +47,7 @@ urlpatterns = [
 ]
 ```
 Kemudian pada file lain yaitu file `urls.py` pada direktori `MarsyApparel` impor fungsi `include` kemudian tambahkan rute URL yang memanggil tampilan `main` yang sebelumnya sudah dibuat, sehingga menjadi seperti berikut ini:
+
 ![image](https://github.com/marsyarahmadani/Marsy-Apparel/assets/116958619/fc34088a-1fee-4217-af0a-349732c8eb68)
 
 4.Membuat model pada aplikasi main dengan nama Item dan memiliki atribut wajib sebagai berikut.
@@ -98,7 +99,8 @@ kemudian deploy applikasi agar apikasi dapat dilihat di internet.
 
 **(2) Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara `urls.py`, `views.py`, `models.py`, dan berkas `html`.**
 
-//masukkan foto bagan
+![image](https://github.com/marsyarahmadani/Marsy-Apparel/assets/116958619/aa8be6e4-bc3a-4d4a-835f-e6433bca76c8)
+
 
 
 **(3) Jelaskan mengapa kita menggunakan **virtual environment**? Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan **virtual environment**?**
