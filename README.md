@@ -35,7 +35,19 @@ python manage.py startapp main
 ```
 kemudian menambahkan `main` ke dalam proyek dengan menambahkan `main` pada variabel `INSTALLED_APPS` yang ada pada berkas `settings.py`
 
-3. Melakukan routing pada proyek agar dapat menjalankan aplikasi main.
+3. Melakukan routing pada proyek agar dapat menjalankan aplikasi main.Untuk melaksanakan ceklis ini, kita perlu membuat file baru bernama `urls.py` di direktori `main`. Kemudian isi `urls.py` dengan kode berikut ini:
+```
+from django.urls import path
+from main.views import show_main
+
+app_name = 'main'
+
+urlpatterns = [
+    path('', show_main, name='show_main'),
+]
+```
+Kemudian pada file lain yaitu file `urls.py` pada direktori `MarsyApparel` impor fungsi `include` kemudian tambahkan rute URL yang memanggil tampilan `main` yang sebelumnya sudah dibuat, sehingga menjadi seperti berikut ini:
+![image](https://github.com/marsyarahmadani/Marsy-Apparel/assets/116958619/fc34088a-1fee-4217-af0a-349732c8eb68)
 
 4.Membuat model pada aplikasi main dengan nama Item dan memiliki atribut wajib sebagai berikut.
     - `name` sebagai nama item dengan tipe `CharField`.
