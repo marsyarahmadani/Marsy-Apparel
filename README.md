@@ -2,7 +2,7 @@
 ### NPM   : 2206028642
 ### Kelas : PBP E
 
-#### Link tautan repositori aplikasi Adaptable: https://marsyapparel.adaptable.app/main/
+#### Link tautan aplikasi Adaptable: https://marsyapparel.adaptable.app/main/
 
 **(1) Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).**
 
