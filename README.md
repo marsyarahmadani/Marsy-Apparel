@@ -391,3 +391,9 @@ Server akan menampilkan seluruh data produk-produk yang telah ditambahkan , dan 
 http://localhost:8000/xml/[id] , http://localhost:8000/json/[id]
 
 ### Screenshot dari hasil akses URL pada Postman :
+
+![image](https://github.com/marsyarahmadani/Marsy-Apparel/assets/116958619/b4c6e29b-e007-4afd-a28a-d945ce33bc67)
+![image](https://github.com/marsyarahmadani/Marsy-Apparel/assets/116958619/8aac1622-396f-41eb-8b76-0be0ed5d3958)
+![image](https://github.com/marsyarahmadani/Marsy-Apparel/assets/116958619/07a75b13-6f63-4011-83bd-151ea430590b)
+![image](https://github.com/marsyarahmadani/Marsy-Apparel/assets/116958619/6b0aabdb-fac0-416f-ad88-b50930f18956)
+![image](https://github.com/marsyarahmadani/Marsy-Apparel/assets/116958619/748d3739-3eab-4116-b108-34023a4b4e64)
