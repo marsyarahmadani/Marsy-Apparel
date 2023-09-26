@@ -244,6 +244,7 @@ Selanjutnya tambahkan import berikut pada file `views.py` yang ada di direktori 
 from django.http import HttpResponseRedirect
 from main.forms import ProductForm
 from django.urls import reverse
+from main.models import Item
 ```
 Kemudian tambahkan fungsi `create_product` dan edit fungsi `show_main` seperti berikut ini:
 ```
