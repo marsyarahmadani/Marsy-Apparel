@@ -666,6 +666,55 @@ def create_product(request):
 Jangan lupa untuk melakukan migrasi model dengan `python manage.py makemigrations` agar semua perubahan tersimpan.
 Kemudian akan ada error yang mucul. Pilih `1` lalu ketik `1` lagi.
 
+*Tambahan Bonus: membuat button add, remove dan delete*
+
+Untuk membuat fungsi menghapus saya menambah fungsi `delete_product` pada views dengan rincian seperti berikut (dan saya mengimport get_object_or_404):
+```
+def delete_product(request, product_id):
+    product = get_object_or_404(Item, pk=product_id)
+    
+    # Pastikan hanya pemilik produk yang dapat menghapusnya
+    if product.user == request.user:
+        product.delete()
+    
+    return HttpResponseRedirect(reverse('main:show_main'))
+
+```
+Untuk fungsi menambah produk saya membuat fungsi `increment_product` dengan rincian sebagai berikut:
+```
+def increment_product(request, product_id):
+    product = get_object_or_404(Item, pk=product_id)
+    
+    # Pastikan hanya pemilik produk yang dapat mengubah jumlahnya
+    if product.user == request.user:
+        product.amount += 1
+        product.save()
+    
+    return HttpResponseRedirect(reverse('main:show_main'))
+```
+Untuk fungsi menambah produk saya membuat fungsi `decrement_product` dengan rincian sebagai berikut:
+
+```
+def decrement_product(request, product_id):
+    product = get_object_or_404(Item, pk=product_id)
+    
+    if product.user == request.user:
+        if product.amount > 1:
+            product.amount -= 1
+            product.save()
+    
+    return HttpResponseRedirect(reverse('main:show_main'))
+
+```
+Setelah membuat fungsi2 tersebut, jangan lupa untuk tambahkan path pada `urls.py` dengan mengimport nama2 fungsi tersebut dan memasukkan path seperti berikut:
+```    
+path('delete-product/<int:product_id>/', delete_product, name='delete_product'),
+    path('increment-product/<int:product_id>/', increment_product, name='increment_product'),
+    path('decrement-product/<int:product_id>/', decrement_product, name='decrement_product'),
+```
+Kemudian beri adjustment pada `main.html` agar bisa menerapkan fungsi2 tersebut pad button, sehingga ketika diklik, proses fungsi dipanggil dan akan melakukan proses yang diminta.
+
+
 *Tambahan modifikasi pada bentuk tampilan HTML*
 
 Saya menambahkan beberapa modifikasi pada tampilah main.html saya agar tampilan website lebih enak dibaca. Beberapa hal yang saya tambahkan adalah : memberikan style pada tabel, meng-set semua objek agar align ditengah.

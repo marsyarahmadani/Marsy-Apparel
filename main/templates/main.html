@@ -37,6 +37,13 @@
                     background: #ffffff;
                     color: #4d4d4d;
                 }
+                table td {
+                    border:1px solid #b3adad;
+                    text-align:center;
+                    padding:5px;
+                    background: #ffffff;
+                    color: #4d4d4d;
+                }
             </style>
 
         </head>
@@ -48,6 +55,9 @@
                         <th>Name</th>
                         <th>Amount</th>
                         <th>Description</th>
+                        <th>Delete</th>
+                        <th>Add</th>
+                        <th>Remove</th>
 
                     </tr>
                 </thead>
@@ -59,7 +69,21 @@
                         <td>{{product.name}}</td>
                         <td>{{product.amount}}</td>
                         <td>{{product.description}}</td>
-
+                        <td>
+                            <a href="{% url 'main:delete_product' product.id %}">
+                                <button>Delete</button>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'main:increment_product' product.id %}">
+                                <button>+</button>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'main:decrement_product' product.id %}">
+                                <button>-</button>
+                            </a>
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>

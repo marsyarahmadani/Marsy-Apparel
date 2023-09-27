@@ -12,6 +12,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404
 
 @login_required(login_url='/login')
 def show_main(request):
@@ -37,6 +38,33 @@ def create_product(request):
         return HttpResponseRedirect(reverse('main:show_main'))
     context = {'form': form}
     return render(request, "create_product.html", context)
+
+def delete_product(request, product_id):
+    product = get_object_or_404(Item, pk=product_id)
+    
+    if product.user == request.user:
+        product.delete()
+    
+    return HttpResponseRedirect(reverse('main:show_main'))
+
+def increment_product(request, product_id):
+    product = get_object_or_404(Item, pk=product_id)
+    
+    if product.user == request.user:
+        product.amount += 1
+        product.save()
+    
+    return HttpResponseRedirect(reverse('main:show_main'))
+
+def decrement_product(request, product_id):
+    product = get_object_or_404(Item, pk=product_id)
+    
+    if product.user == request.user:
+        if product.amount > 1:
+            product.amount -= 1
+            product.save()
+    
+    return HttpResponseRedirect(reverse('main:show_main'))
 
 def login_user(request):
     if request.method == 'POST':
