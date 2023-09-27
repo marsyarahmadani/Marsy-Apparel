@@ -719,7 +719,6 @@ Kemudian beri adjustment pada `main.html` agar bisa menerapkan fungsi2 tersebut 
 *Tambahan modifikasi pada bentuk tampilan HTML*
 =======
 **Tambahan modifikasi pada bentuk tampilan HTML**
->>>>>>> 45286cfc6e364f969dcad9ce3ca522517e843db6
 
 Saya menambahkan beberapa modifikasi pada tampilah main.html saya agar tampilan website lebih enak dibaca. Beberapa hal yang saya tambahkan adalah : memberikan style pada tabel, meng-set semua objek agar align ditengah.
 
