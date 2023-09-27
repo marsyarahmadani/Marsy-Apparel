@@ -405,23 +405,23 @@ http://localhost:8000/xml/[id] , http://localhost:8000/json/[id]
 
 ### Apa itu Django `UserCreationForm`, dan jelaskan apa kelebihan dan kekurangannya?
 `UserCreationForm` merupakan impor formulir yang disediakan oleh `django` yang memudahkan proses pembuatan formulir pendaftaran pengguna dalam aplikasi web. Formulir ini berfungsi bagi pengguna baru untuk registrasi dengan mudah di website dengan menyimpan nama pengguna (username), kata sandi (password), dan konfirmasi kata sandi. 
-*Kelebihan :*
+**Kelebihan :**
  - Dengan menggunakan `UserCreationForm`, pengguna bisa melakukan registrasi dengan lebih mudah.
  - Cepat untuk diterapkan ke dalam proyek django manapun karena hanya perlu melakukan pemanggilan dan mudah diimplementasikan.
  - `UserCreationForm` cocok digunakan bila akan menggunakan model bawaan `user` dari `django`.
 
-*Kekurangan :*
+**Kekurangan :**
  - `UserCreationForm` memiliki batasan dalam kustomisasi, sehingga lebih sulit untuk mengubah dan memodifikasinya sesuai kebutuhan. 
  - `UserCreationForm` sangat bergantung dengan model user bawaan, hanya bisa melakukan registrasi sederhana seperti meminta data Username, dan Password. Untuk hal lebih dari itu perlu membuat form kustom sendiri.
  - Bentuk tampilan desainnya akan selalu sama, sehingga penggunaan `UserCreationForm` bisa saja tidak cocok digunakan dengen tema desain yang ada pada website. 
 
 ### Apa perbedaan antara autentikasi dan otorisasi dalam konteks Django, dan mengapa keduanya penting?
 
-*Autentikasi :* Proses verifikasi identitas pengguna yang mencoba mengakses suatu sistem atau aplikasi. Proses ini dilakukan dengan mencocokkan kebenaran data yang tersimpan dengan input username dan kata sandi atau data biometrik lainnya seperti sidik jari dan face recognition.
+**Autentikasi :** Proses verifikasi identitas pengguna yang mencoba mengakses suatu sistem atau aplikasi. Proses ini dilakukan dengan mencocokkan kebenaran data yang tersimpan dengan input username dan kata sandi atau data biometrik lainnya seperti sidik jari dan face recognition.
 
-*Otorisasi :* Proses yang berjalan setelah proses autentikasi untuk memberi batasan apa saja yang diizinkan atau tidak diizinkan dilakukan oleh pengguna yang telah di verifikasi.
+**Otorisasi :** Proses yang berjalan setelah proses autentikasi untuk memberi batasan apa saja yang diizinkan atau tidak diizinkan dilakukan oleh pengguna yang telah di verifikasi.
 
-*Autentikasi dan Otorisasi* penting karena keduanya melindungi data sensitif dari akses yang tidak sah. Keduanya dapat membatasi hanya orang yang sah dapat mengakses informasi atau suberdaya tertentu yang sesuai dengan peran atau hak yang mereka miliki. 
+**Autentikasi dan Otorisasi** penting karena keduanya melindungi data sensitif dari akses yang tidak sah. Keduanya dapat membatasi hanya orang yang sah dapat mengakses informasi atau suberdaya tertentu yang sesuai dengan peran atau hak yang mereka miliki. 
 
 ### Apa itu cookies dalam konteks aplikasi web, dan bagaimana Django menggunakan cookies untuk mengelola data sesi pengguna?
 
@@ -437,7 +437,7 @@ Cookies dapat aman digunakan dalam penggembangan web jika dilakukan dengan benar
 
 ###  Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 
-*1. Mengimplementasikan fungsi registrasi, login, dan logout untuk memungkinkan pengguna untuk mengakses aplikasi sebelumnya dengan lancar.*
+**1. Mengimplementasikan fungsi registrasi, login, dan logout untuk memungkinkan pengguna untuk mengakses aplikasi sebelumnya dengan lancar.**
 
 Untuk mengimplementasikan fungsi-fungsi diatas, pertama jalankan _Virtual environment_ terlebih dahulu, kemudian menambahkan beberapa import pada `views.py` yang ada pada folder `main`:
 ```
@@ -608,7 +608,7 @@ def show_main(request):
 Setelah melakukan semua diatas, maka kini fungsi registrasi, login dan logout dapat diakses oleh pengguna dan data akan dibatasi hanya pengguna yang sudah login dapat melihat data mereka. 
 
 
-*2. Menampilkan detail informasi pengguna yang sedang logged in seperti username dan menerapkan cookies seperti last login pada halaman utama aplikasi.*
+**2. Menampilkan detail informasi pengguna yang sedang logged in seperti username dan menerapkan cookies seperti last login pada halaman utama aplikasi.**
 
 Agar cookies menambahkan last login pada halaman main, pada `views.py` di folder `main`, import `datetime`. Kemudian pada fungsi `login_user` tambahkan cookie baru dengan mengganti kode pada `if user not none` menjadi berikut ini:
 ```
@@ -628,7 +628,7 @@ Untuk menampilkan data _last login_ tambahkan kode berikut diantara tabel dann t
 ```
 
 
-*3. Menghubungkan model Item dengan User.*
+**3. Menghubungkan model Item dengan User.**
 
 Yang pertama dilakukan untuk menghubungkan `Item` dengan `User` adalah mengimport user pada `model.py` dengan baris kode berikut:
 ```
@@ -666,6 +666,7 @@ def create_product(request):
 Jangan lupa untuk melakukan migrasi model dengan `python manage.py makemigrations` agar semua perubahan tersimpan.
 Kemudian akan ada error yang mucul. Pilih `1` lalu ketik `1` lagi.
 
+<<<<<<< HEAD
 *Tambahan Bonus: membuat button add, remove dan delete*
 
 Untuk membuat fungsi menghapus saya menambah fungsi `delete_product` pada views dengan rincian seperti berikut (dan saya mengimport get_object_or_404):
@@ -716,10 +717,13 @@ Kemudian beri adjustment pada `main.html` agar bisa menerapkan fungsi2 tersebut 
 
 
 *Tambahan modifikasi pada bentuk tampilan HTML*
+=======
+**Tambahan modifikasi pada bentuk tampilan HTML**
+>>>>>>> 45286cfc6e364f969dcad9ce3ca522517e843db6
 
 Saya menambahkan beberapa modifikasi pada tampilah main.html saya agar tampilan website lebih enak dibaca. Beberapa hal yang saya tambahkan adalah : memberikan style pada tabel, meng-set semua objek agar align ditengah.
 
 
-*4. Membuat dua akun pengguna dengan masing-masing tiga dummy data menggunakan model yang telah dibuat pada aplikasi sebelumnya untuk setiap akun di lokal.*
+**4. Membuat dua akun pengguna dengan masing-masing tiga dummy data menggunakan model yang telah dibuat pada aplikasi sebelumnya untuk setiap akun di lokal.**
 
 Sebagai percobaan, untuk membuat dua akun, maka harus melakukan tahapan registrasi dua kali dengan username dan password yang berbeda. Lalu ditambahkan 3 data dummy pada setiap akun.
