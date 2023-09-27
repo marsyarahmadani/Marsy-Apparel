@@ -437,7 +437,7 @@ Cookies dapat aman digunakan dalam penggembangan web jika dilakukan dengan benar
 
 ###  Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 
-1. Mengimplementasikan fungsi registrasi, login, dan logout untuk memungkinkan pengguna untuk mengakses aplikasi sebelumnya dengan lancar.
+*1. Mengimplementasikan fungsi registrasi, login, dan logout untuk memungkinkan pengguna untuk mengakses aplikasi sebelumnya dengan lancar.*
 
 Untuk mengimplementasikan fungsi-fungsi diatas, pertama jalankan _Virtual environment_ terlebih dahulu, kemudian menambahkan beberapa import pada `views.py` yang ada pada folder `main`:
 ```
@@ -608,7 +608,7 @@ def show_main(request):
 Setelah melakukan semua diatas, maka kini fungsi registrasi, login dan logout dapat diakses oleh pengguna dan data akan dibatasi hanya pengguna yang sudah login dapat melihat data mereka. 
 
 
-2. Menampilkan detail informasi pengguna yang sedang logged in seperti username dan menerapkan cookies seperti last login pada halaman utama aplikasi.
+*2. Menampilkan detail informasi pengguna yang sedang logged in seperti username dan menerapkan cookies seperti last login pada halaman utama aplikasi.*
 
 Agar cookies menambahkan last login pada halaman main, pada `views.py` di folder `main`, import `datetime`. Kemudian pada fungsi `login_user` tambahkan cookie baru dengan mengganti kode pada `if user not none` menjadi berikut ini:
 ```
@@ -628,13 +628,13 @@ Untuk menampilkan data _last login_ tambahkan kode berikut diantara tabel dann t
 ```
 
 
-3. Menghubungkan model Item dengan User.
+*3. Menghubungkan model Item dengan User.*
 
 Yang pertama dilakukan untuk menghubungkan `Item` dengan `User` adalah mengimport user pada `model.py` dengan baris kode berikut:
 ```
 from django.contrib.auth.models import User
 ```
-Kemudian pada model `Item`, tambahkan kode `    user = models.ForeignKey(User, on_delete=models.CASCADE)` pada baris pertama setelah inisiasi class.
+Kemudian pada model `Item`, tambahkan kode `user = models.ForeignKey(User, on_delete=models.CASCADE)` pada baris pertama setelah inisiasi class.
 
 Kemudian ubah fungsi `show_main` dan `create_product` pada `views.py` di `main` dengan kode berikut:
 ```
@@ -666,7 +666,11 @@ def create_product(request):
 Jangan lupa untuk melakukan migrasi model dengan `python manage.py makemigrations` agar semua perubahan tersimpan.
 Kemudian akan ada error yang mucul. Pilih `1` lalu ketik `1` lagi.
 
+*Tambahan modifikasi pada bentuk tampilan HTML*
 
-4. Membuat dua akun pengguna dengan masing-masing tiga dummy data menggunakan model yang telah dibuat pada aplikasi sebelumnya untuk setiap akun di lokal.
+Saya menambahkan beberapa modifikasi pada tampilah main.html saya agar tampilan website lebih enak dibaca. Beberapa hal yang saya tambahkan adalah : memberikan style pada tabel, meng-set semua objek agar align ditengah.
+
+
+*4. Membuat dua akun pengguna dengan masing-masing tiga dummy data menggunakan model yang telah dibuat pada aplikasi sebelumnya untuk setiap akun di lokal.*
 
 Sebagai percobaan, untuk membuat dua akun, maka harus melakukan tahapan registrasi dua kali dengan username dan password yang berbeda. Lalu ditambahkan 3 data dummy pada setiap akun.

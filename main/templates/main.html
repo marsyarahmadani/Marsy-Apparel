@@ -1,48 +1,84 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Marsy Apparel Page</h1>
+    <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
 
-    <h5>Name:</h5>
-    <p>{{name}}</p>
+        <h1>Marsy Apparel Page</h1>
 
-    <h5>Class:</h5>
-    <p>{{class}}</p>
+        <div style="display: flex; align-items: center;">
+            <h5 style="margin: 0;">Name :</h5>
+            <p style="margin: 0;">{{name}}</p>
+        </div>
 
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Amount</th>
-            <th>Description</th>
+        <div style="display: flex; align-items: center;">
 
-        </tr>
+            <h5 style="margin: 0;">Class :</h5>
+            <p style="margin: 0;">{{class}}</p>
+        </div>
+        <p></p>
+        <head>
+            <style>
+                table {
+                    width:110%;
+                    border:1px solid #b3adad;
+                    border-collapse:collapse;
+                    padding:5px;
+                }
+                table th {
+                    border:1px solid #b3adad;
+                    padding:5px;
+                    background: #e0fff9;
+                    color: #4e4646;
+                }
+                table td {
+                    border:1px solid #b3adad;
+                    text-align:center;
+                    padding:5px;
+                    background: #ffffff;
+                    color: #4d4d4d;
+                }
+            </style>
 
+        </head>
+        <body>
 
-        {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Amount</th>
+                        <th>Description</th>
 
-        {% for product in products %}
-            <tr>
-                <td>{{product.name}}</td>
-                <td>{{product.amount}}</td>
-                <td>{{product.description}}</td>
+                    </tr>
+                </thead>
+                <tbody>
+                {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
 
-            </tr>
-        {% endfor %}
-    </table>
+                {% for product in products %}
+                    <tr>
+                        <td>{{product.name}}</td>
+                        <td>{{product.amount}}</td>
+                        <td>{{product.description}}</td>
 
-    <h5>Sesi terakhir login: {{ last_login }}</h5>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </body>
+        
+        <h5>Sesi terakhir login: {{ last_login }}</h5>
 
-<br />
+        <br />
 
-<a href="{% url 'main:create_product' %}">
-    <button>
-        Add New Product
-    </button>
-</a>
-<a href="{% url 'main:logout' %}">
-    <button>
-        Logout
-    </button>
-</a>
-
+        <a href="{% url 'main:create_product' %}">
+            <button>
+                Add New Product
+            </button>
+        </a>
+        <a href="{% url 'main:logout' %}">
+            <button>
+                Logout
+            </button>
+        </a>
+    </div>
 {% endblock content %}
