@@ -1,68 +1,143 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
 
-        <h1>Marsy Apparel Page</h1>
+    <head>
+        <nav class="navbar" style="background-color: #ebe6e4;">
+            <div class="logo" style="color: #292727;">
+                <a style="padding: 0px 15px 0px 15px;"><img src="https://i.pinimg.com/736x/ad/5a/d2/ad5ad2e05f522b2865690d7389d5ff68.jpg"style="width: 70px; height: 70px; margin-right: 10px;"></a>
+                <a style="padding: 9px 0px 9px 0px;">Marsy Apparel</a>            </div>
+            <div class="menu">
+                <ul>
+                    <li>
+                        <a href="#">Home</a>
+                    </li>
+                    <li>
+                        <a href="#">Sales Overview</a>
+                    </li>
+                    <li>
+                        <a href="#">Contacts</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'main:logout' %}" class="ml-auto">
+                        <button class="btn btn-outline-danger" type="button">Logout</button>
+                        </a>
+                    </li>
+                </ul>            
+            </div>
+        </nav>
 
-        <div style="display: flex; align-items: center;">
-            <h5 style="margin: 0;">Name :</h5>
-            <p style="margin: 0;">{{name}}</p>
-        </div>
-
-        <div style="display: flex; align-items: center;">
-
-            <h5 style="margin: 0;">Class :</h5>
-            <p style="margin: 0;">{{class}}</p>
-        </div>
+    
         <p></p>
-        <head>
-            <style>
-                table {
-                    width:110%;
-                    border:1px solid #b3adad;
-                    border-collapse:collapse;
-                    padding:5px;
-                }
-                table th {
-                    border:1px solid #b3adad;
-                    padding:5px;
-                    background: #e0fff9;
-                    color: #4e4646;
-                }
-                table td {
-                    border:1px solid #b3adad;
-                    text-align:center;
-                    padding:5px;
-                    background: #ffffff;
-                    color: #4d4d4d;
-                }
-                table td {
-                    border:1px solid #b3adad;
-                    text-align:center;
-                    padding:5px;
-                    background: #ffffff;
-                    color: #4d4d4d;
-                }
-            </style>
 
-        </head>
-        <body>
+        <style>
+            .navbar{
+                margin: auto;
+                position: relative;
+            }
 
-            <table>
+            .logo a{
+                font-size: 35px;
+                font-weight:normal;
+                float: left;
+                font-family: 'Unna', serif, cursive;
+                text-align: center;
+            }
+            .menu{
+                float: right;                
+            }
+            nav{
+                width: 100%;
+                margin:auto;
+                display: flex;
+                line-height: 50px;
+                position: sticky;
+                top:0;
+            }
+            nav ul{
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+            }
+            nav ul li{
+                float: left;
+            }
+            nav ul li a{
+                color: #292727;
+                font-weight:normal;
+                text-align: center;
+                padding: 0px 16px 0px 16px;
+                text-decoration: none;
+            }
+            nav ul li a:hover{
+                text-decoration: underline;
+            }
+            table {
+                width:90%;
+                border:1px  #b3adad;
+                padding:5px;
+                border-radius: 20px;            
+            }
+            table th {
+                border:1px solid #b3adad;
+                padding:5px;
+                background: #d0dbc3;
+                color: #4e4646;
+            }
+            table td {
+                border:1px solid #b3adad;
+                text-align:center;
+                padding:5px;
+                background: #fcfcfc;
+                color: #4d4d4d;
+
+            }
+
+            table tbody tr td button{
+                background-color: #ebe6e4;
+                border: none;
+                border-radius: 5px;
+            }
+            .navbar-title {
+                font-weight: 700px;
+                float: left;
+                color: #ebe6e4;
+                text-align:left;
+                font-size: 28px;
+                padding:5px;
+                margin-right: 2px; /* Untuk jarak ke kanan */
+                margin-left: 2px;  /*Untuk jarak ke kiri */
+            }
+            body{
+                background-color: #fffdfc;
+            }
+
+            table tbody tr:last-child{
+                background-color: rgb(247, 247, 124);
+                }
+
+        </style>
+        <link href="https://fonts.googleapis.com/css2?family=Mulish&family=Unna:wght@700&display=swap" rel="stylesheet">
+
+    </head>
+    
+    <body style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+        <a class="welcome" style="color: #313131; font-family: 'Mulish'; font-size: 24px; text-decoration: none; margin-top: 20px;">-* Hello, {{ name }} *-</a>
+        <p style="font-family: 'Mulish';"> Here are <b>{{ item_counter }}</b> available clothings on stock</p>
+        <table style="margin-top: 20px;">
                 <thead>
                     <tr>
                         <th>Name</th>
                         <th>Amount</th>
                         <th>Description</th>
                         <th>Delete</th>
-                        <th>Add</th>
-                        <th>Remove</th>
+                        <th>+/-</th>
+                        <th>Edit</th>
 
                     </tr>
                 </thead>
-                <tbody>
-                {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
+                <tbody class="table-group-divider last-table">
 
                 {% for product in products %}
                     <tr>
@@ -70,39 +145,37 @@
                         <td>{{product.amount}}</td>
                         <td>{{product.description}}</td>
                         <td>
-                            <a href="{% url 'main:delete_product' product.id %}">
-                                <button>Delete</button>
-                            </a>
+                            <a href="{% url 'main:delete_product' product.id %}" class="btn btn-danger btn-sm">Delete</a>
                         </td>
                         <td>
                             <a href="{% url 'main:increment_product' product.id %}">
                                 <button>+</button>
                             </a>
-                        </td>
-                        <td>
-                            <a href="{% url 'main:decrement_product' product.id %}">
+
+                            <a href="{% url 'main:decrement_product' product.id %}" >
                                 <button>-</button>
                             </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'main:edit_product' product.pk %}" class="btn btn-primary btn-sm">Edit</a>
                         </td>
                     </tr>
                 {% endfor %}
                 </tbody>
-            </table>
-        </body>
-        
-        <h5>Sesi terakhir login: {{ last_login }}</h5>
 
+            </table>
+            <p></p>
+            <h5 style="font-family: 'Unna', cursive; color: #313131; font-size: 16px;">Sesi terakhir login: {{ last_login }}</h5>
+      
         <br />
 
         <a href="{% url 'main:create_product' %}">
-            <button>
+            <button style="border: none; border-radius: 3px;">
                 Add New Product
             </button>
         </a>
-        <a href="{% url 'main:logout' %}">
-            <button>
-                Logout
-            </button>
-        </a>
-    </div>
+        <p></p>
+
+    </body>
+
 {% endblock content %}

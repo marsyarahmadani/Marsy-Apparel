@@ -1,34 +1,104 @@
 {% extends 'base.html' %}
 
-{% block meta %}
-    <title>Login</title>
-{% endblock meta %}
-
 {% block content %}
+<head>
+    <meta charset="UTF-8">
 
-<div class = "login">
+    <title style="font-family: 'Mulish';">Login</title>
+    <style>
+        body {
+            font-family: "Mulish";
+            background-color: #ebe6e4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
 
-    <h1>Login</h1>
+        .login {
+            background-color: #fffdfc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px 292727(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
 
-    <form method="POST" action="">
-        {% csrf_token %}
-        <table>
-            <tr>
-                <td>Username: </td>
-                <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
-            </tr>
-                    
-            <tr>
-                <td>Password: </td>
-                <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
-            </tr>
+        .login-container h1 {
+            margin-bottom: 20px;
+        }
 
-            <tr>
-                <td></td>
-                <td><input class="btn login_btn" type="submit" value="Login"></td>
-            </tr>
-        </table>
-    </form>
+        .login-form {
+            text-align: center;
+            padding: auto;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            padding: auto;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-group button {
+            background-color: #007BFF;
+
+        }
+
+        </style>
+        <link href="https://fonts.googleapis.com/css2?family=Mulish&family=Unna:wght@700&display=swap" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+    <div class = "login">
+
+        <h1>Login</h1>
+
+        <div class="login-form">
+            <form method="POST" action="">
+            {% csrf_token %}
+
+            <table>
+                <div class = "form-group">
+                    <tr>
+                        <td><label>Username: </label></td>
+                        <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
+                    </tr>
+                </div>   
+                <div class = "form-group">
+                    <tr>
+                        <td><label>Password: </label></td>
+                        <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
+                    </tr>
+                </div>   
+                <div class = "form-group">
+                    <tr>
+                        <td></td>
+                        <td><input class="btn login_btn" type="submit" value="Login" style="background-color: #7fd2e0; border-radius: 5px"></td>
+                    </tr>
+                </div>   
+
+            </table>
+        </form>
+        </div>
+
+        <p>Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a></p>
+    </div>
 
     {% if messages %}
         <ul>
@@ -38,8 +108,6 @@
         </ul>
     {% endif %}     
         
-    Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a>
-
-</div>
+</body> 
 
 {% endblock content %}

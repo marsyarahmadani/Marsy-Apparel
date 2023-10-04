@@ -1,34 +1,96 @@
 {% extends 'base.html' %}
 
-{% block meta %}
-    <title>Register</title>
-{% endblock meta %}
-
 {% block content %}  
 
-<div class = "login">
-    
-    <h1>Register</h1>  
+<head>    
+    <meta charset="UTF-8">
+    <title style="font-family: 'Mulish';">Register</title>
 
-        <form method="POST" >  
-            {% csrf_token %}  
-            <table>  
-                {{ form.as_table }}  
-                <tr>  
-                    <td></td>
-                    <td><input type="submit" name="submit" value="Daftar"/></td>  
-                </tr>  
-            </table>  
-        </form>
+    <style>
+        body {
+            font-family: "Mulish";
+            background-color: #ebe6e4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
 
-    {% if messages %}  
-        <ul>   
-            {% for message in messages %}  
-                <li>{{ message }}</li>  
-                {% endfor %}  
-        </ul>   
-    {% endif %}
+        .login {
+            background-color: #fffdfc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px 292727(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
 
-</div>  
+        .login-container h1 {
+            margin-bottom: 20px;
+        }
 
+        .login-form {
+            text-align: left;
+            padding: auto;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            padding: auto;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-group button {
+            background-color: #007BFF;
+
+        }
+
+
+        </style>
+        <link href="https://fonts.googleapis.com/css2?family=Mulish&family=Unna:wght@700&display=swap" rel="stylesheet">
+
+
+</head>
+
+<body>
+    <div class = "login">
+        
+        <h1>Register</h1>  
+
+        <div class="login-form" style="text-align: center;">
+            <form method="POST" >  
+                {% csrf_token %}  
+                <table>  
+                    {{ form.as_table }}  
+                    <tr>  
+                        <td></td>
+                        <td><input type="submit" name="submit" value="Daftar"/></td>  
+                    </tr>  
+                </table>  
+            </form>
+        </div>
+        
+        {% if messages %}  
+            <ul>   
+                {% for message in messages %}  
+                    <li>{{ message }}</li>  
+                    {% endfor %}  
+            </ul>   
+        {% endif %}
+
+    </div>  
+</body>
 {% endblock content %}

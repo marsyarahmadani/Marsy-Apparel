@@ -1,14 +1,20 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
+
+{% load static %}
 
 {% block content %}
 <head>
     <meta charset="UTF-8">
-    <title style="font-family: 'Mulish';">Create Product</title>
+
+    <title style="font-family: 'Mulish';">Edit Product</title>
 
     <style>
         body {
             font-family: "Mulish";
-            background-color: #ebe6e4;
+            background-image: url(https://i.pinimg.com/564x/97/48/ca/9748ca48a8162ad52f53030c57049b05.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: scroll;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -16,61 +22,38 @@
             margin: 0;
         }
 
-        .add {
+        .edit_product{
             background-color: #fffdfc;
             border-radius: 5px;
-            box-shadow: 0 0 10px 292727(0, 0, 0, 0.1);
-            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px 20px 20px 20px;
             max-width: 600px;
             width: 100%;
             text-align: center;
         }
-
-        .add-container h1 {
+        .edit_product h1 {
             margin-bottom: 20px;
-        }
 
-        .add-form {
-            text-align: left;
-            padding: auto;
         }
-
-        .form-group {
+        .edit_product-form {
             margin-bottom: 15px;
-            padding: auto;
+            padding: 20px 20px 20px 20px;
         }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
+        .edit_product-form table{
+            margin-bottom: 15px;
+            padding: 20px 20px 20px 20px;
         }
-
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .form-group button {
-            background-color: #007BFF;
-
-        }
-
 
         </style>
         <link href="https://fonts.googleapis.com/css2?family=Mulish&family=Unna:wght@700&display=swap" rel="stylesheet">
 
-
 </head>
+
 <body>
-
-    <div class = "add">
-
-        <h1>Add New Product</h1>
-
-        <div class="add-form" style="text-align: center;">
-
+    <div class = "edit_product">
+        <h1>Edit Product</h1>
+        
+        <div class="edit_product-form">
             <form method="POST">
                 {% csrf_token %}
                 <table>
@@ -78,13 +61,14 @@
                     <tr>
                         <td></td>
                         <td>
-                            <input type="submit" value="Add Product"/>
+                            <input type="submit" value="Edit Product"/>
                         </td>
                     </tr>
                 </table>
             </form>
         </div>
     </div>
-    
 </body>
+
+
 {% endblock %}

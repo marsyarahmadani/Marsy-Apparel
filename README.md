@@ -726,3 +726,85 @@ Saya menambahkan beberapa modifikasi pada tampilah main.html saya agar tampilan 
 **4. Membuat dua akun pengguna dengan masing-masing tiga dummy data menggunakan model yang telah dibuat pada aplikasi sebelumnya untuk setiap akun di lokal.**
 
 Sebagai percobaan, untuk membuat dua akun, maka harus melakukan tahapan registrasi dua kali dengan username dan password yang berbeda. Lalu ditambahkan 3 data dummy pada setiap akun.
+
+
+
+
+#
+# TUGAS 5 SECTION
+
+###  Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya.
+
+1. ID Selector:
+- Menggunakan ID dari elemen HTML
+- Setiap ID yang dipilih harus unik
+- Bermanfaat ketika ingin mengganti satu elemen pada webpage
+contoh: #colorBox {background-color: white;}
+
+2. Class Selector:
+- Memanggil elemen yang beradai di class tertentu.
+- Class tidak harus unik, sehingga Class Selector dapat digunakan berkali-kali
+- Bermanfaat ketika ingin mengganti beberapa elemen sekaligus
+contoh: .logo{ font-size: 25px; }
+
+3. Element Selector:
+- Selector memilih dengan memanggil suatu elemen langsung dengan namanya.
+- ELement Selector bermanfaat ketika ingin mengubah seluruh style yang ada pada suatu webpage menjadi satu style yang seragam.
+contoh: a { color: #313131; }
+
+4. Pseudo-element Selector:
+- Selector memilih dengan memberi style pada bagian dari elemen.
+- Bermanfaat ketika ingin menerapkan style pada suatu bagian tertentu dari elemen.
+contoh: button::before{ content: "-->"}
+
+5. Pseudo-class Selector:
+- Selector memilih elemen berdasarkan state tertentu dari class
+- Bermanfaat ketika ingin mengganti suatu state dari class ketika diberi action tertentu.
+contoh: a:hover { text-decoration = underline; }
+
+6. Combinator selection:
+- Selector memilih elemen bedasarkan keterhubungannya dengan elemen lain.
+- Bermanfaat ketika ingin memberi style pada elemen yang memiliki suatu keterhubungan dengan elemen lainnya.
+contoh: ul li {float: left;}
+
+7. Attribute Selector:
+- Selector memilih elemen berdasarkan atribut.
+- Bermanfaat digunakan ketika ingin menggambarkan elemen bedasar suatu atribut tertentu.
+contoh: a[target="_blank"]{ color: blue;}
+
+
+### Jelaskan HTML5 Tag yang kamu ketahui.
+- `<html>` = Untuk mendefinisikan akar file
+- `<head>` = Untuk menyimpan informasi file
+- `<body>` = Untuk menyimpan isi tubuh file
+- `<table>, <tr>, <td>` = Untuk meninisiasikan bentuk tabel 
+- `<img>` = Untuk menampilkan gambar berdasarkan path source yang dimasukkan
+- `<p>` = Untuk menginisiasikan paragraf
+- `<a>` = Untuk mendefinisikan hyperlink
+- `<div>` = Untuk mendefinisikan suatu bagian dalam dokumen
+- `<button>` = Untuk menggambarkan tombol yang bisa diklik
+- `<input>` = Untuk menggambarkan space yang bisa dijadikan input bagi pengguna
+- `<form>` = Untuk mendefinisikan formulir HTML 
+- `<nav>`  = Untuk menggambarkan bagian menu navigasi
+- `<section>` = Untuk mengelompokkan konten independen yang bisa berdiri sendiri.
+
+### Jelaskan perbedaan antara margin dan padding.
+- **Margin** : Margin adalah ruang di sekitar elemen yang berada di luar border elemen. Sehingga bisa dipakai untuk mengatur jarak antar elemen. Margin tidak memiliki latar belakang (transparan). 
+
+- **Padding** : Padding adalah ruang di dalam border elemen. Sehingga bisa dipakai untuk mengatur jarak antar konten yang berada di dalam elemen. Berbeda dengan margin, padding memilki latar belakang yang bisa diisi warna.
+
+### Jelaskan perbedaan antara framework CSS Tailwind dan Bootstrap. Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya?
+1. **Tailwaind CSS** : 
+    - Dengan menggunakan Tailwand CSS, dapat dibangun komponen yang menggabungkan Class-class kecil yang mengatur properti seperti ukuran, warna dan margin.
+    - Framework ini lebih fleksibel karena dapat menyeusaikan dengan mandiri desain yang dibuat.
+    - Framework ini cocok digunakan ketika ingin memiliik kontrol lebih besar atas desain agar mencapai sebuah tampilan yang sangat unik.
+    - Tailwand CSS juga cocok ketika ingin menghindari penulisan CSS yang rumit. 
+    
+2. **Bootstrap** :
+    - Bootstrap lebih dekat dengan kerangka kerja CSS yang lebih tradisional dengan menggunakan komponen-konponen siap pakai yang memiliki desain bawaan.
+    - Jika dibandingkan dengan framework Tailwand CSS, Bootstrap kurang fleksibel karena tidak memerlukan penyesuaian desain. 
+    - Framework ini cocok digunakan jika kita menyukai desain bawaan Bootstrap dan ingin melakukan desain secara cepat.
+    - Framework ini juga lebih cocok digunakan bagi programmer yang kurang berpengalaman dalam CSS.
+
+
+### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
