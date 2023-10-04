@@ -870,6 +870,9 @@ contoh: a[target="_blank"]{ color: blue;}
    
            }
      ```
+- Hasil akhirnya akan terlihat seperti ini:
+![image](https://github.com/marsyarahmadani/Marsy-Apparel/assets/116958619/e610bf54-7f06-4483-9b74-5d19c62567e5)
+
      
   ***Membuat kusomisasi pada halaman register***
  - Senada dengan kustomisasi pada halaman `login`, untuk membuat kustomisasi tampilan `title` saya menambahkan style yang mengedit `font-family` untuk menyesuaikan dengan grand design saya.
@@ -893,6 +896,9 @@ contoh: a[target="_blank"]{ color: blue;}
    * Untuk memberi desain pada tampilan `.login-form`:  mengeset `text-align` menjadi left dan `padding` auto.
      
    * Untuk memberi desain pada tampilan `form-group`: memasukkan styling yang sama dengan yang ada di `login`
+- Hasil akhirnya akan terlihat seperti ini:
+![image](https://github.com/marsyarahmadani/Marsy-Apparel/assets/116958619/270bdebb-1289-4af4-8323-0bf8a1a38bb0)
+
  
   ***Membuat kusomisasi pada halaman register***
  - Senada dengan kustomisasi pada halaman `create_product` yang berfungsi untuk menambah inventory, untuk kustomisasi tampilan `title` saya menambahkan style yang mengedit `font-family` untuk menyesuaikan dengan grand design saya.
@@ -945,6 +951,8 @@ contoh: a[target="_blank"]{ color: blue;}
  
          }
      ```
+- Hasil akhirnya akan terlihat seperti ini:
+![image](https://github.com/marsyarahmadani/Marsy-Apparel/assets/116958619/0679316b-887a-478e-8f2b-42182c7c6307)
 
    2. Kustomisasi halaman daftar inventori menjadi lebih berwarna
 ***Membuat kusomisasi pada bar navigasi halaman login***
@@ -1069,3 +1077,6 @@ contoh: a[target="_blank"]{ color: blue;}
             }
        ```
     * Untuk memberi desain pada tampilan `body` : Menambahkan warna dengan `background-color : #fffdfc`
+
+- Hasil akhirnya akan terlihat seperti ini:
+![image](https://github.com/marsyarahmadani/Marsy-Apparel/assets/116958619/2edfd866-ee43-45da-b20f-150c6f30ff3b)
