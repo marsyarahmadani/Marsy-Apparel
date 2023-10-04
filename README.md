@@ -807,4 +807,265 @@ contoh: a[target="_blank"]{ color: blue;}
     - Framework ini juga lebih cocok digunakan bagi programmer yang kurang berpengalaman dalam CSS.
 
 
-### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+### Jelaskan bagaimana cara kamu mengimplementasikan checklist secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+
+1.  Kustomisasi halaman login, register, dan tambah inventori semenarik mungkin.
+ 
+ ***Membuat kusomisasi pada halaman login***
+ - Untuk membuat kustomisasi tampilan `title` saya menambahkan style yang mengedit `font-family` untuk menyesuaikan dengan grand design saya.
+ - Kemudian saya menambahkan blok elemen `<style>` untuk memberi informasi pada file untuk setiap styling yang saya buat per selector dengan detail sebagai berikut:
+   * Untuk memberi desain pada tampilan `body`:
+      ```
+              body {
+               font-family: "Mulish";
+               background-color: #ebe6e4;
+               display: flex;
+               justify-content: center;
+               align-items: center;
+               height: 100vh;
+               margin: 0;
+           }
+      ```
+      Untuk menggunakan font `Mulish` perlu ditambahkan kode `<link>`:
+     ```
+      <link href="https://fonts.googleapis.com/css2?family=Mulish&family=Unna:wght@700&display=swap" rel="stylesheet">
+     ```
+   * Untuk memberi desain pada tampilan `.login`:
+     ```
+           .login {
+               background-color: #fffdfc;
+               border-radius: 5px;
+               box-shadow: 0 0 10px 292727(0, 0, 0, 0.1);
+               padding: 20px;
+               max-width: 400px;
+               width: 100%;
+               text-align: center;
+           }
+     ```
+   * Untuk memberi desain pada tampilan `h1` pada `container`:  memasukkan margin `margin-bottom: 20px;`
+   
+   * Untuk memberi desain pada tampilan `.login-form`:  mengeset `text-align` menjadi center dan `padding` auto.
+     
+   * Untuk memberi desain pada tampilan `form-group`:
+     ```
+             .form-group {
+               margin-bottom: 15px;
+               padding: auto;
+           }
+   
+           .form-group label {
+               display: block;
+               margin-bottom: 5px;
+           }
+   
+           .form-group input {
+               width: 100%;
+               padding: 10px;
+               border: 1px solid #ccc;
+               border-radius: 5px;
+           }
+   
+           .form-group button {
+               background-color: #007BFF;
+   
+           }
+     ```
+     
+  ***Membuat kusomisasi pada halaman register***
+ - Senada dengan kustomisasi pada halaman `login`, untuk membuat kustomisasi tampilan `title` saya menambahkan style yang mengedit `font-family` untuk menyesuaikan dengan grand design saya.
+ - Kemudian saya juga menambahkan blok elemen `<style>` untuk memberi informasi pada file untuk setiap styling yang saya buat per selector dengan detail sebagai berikut:
+   * Untuk memberi desain pada tampilan `body`: Mengikuti desain pada halaman `login`
+ 
+   * Untuk memberi desain pada tampilan `.login`:
+     ```
+           .login {
+               background-color: #fffdfc;
+               border-radius: 5px;
+               box-shadow: 0 0 10px 292727(0, 0, 0, 0.1);
+               padding: 20px;
+               max-width: 800px;
+               width: 100%;
+               text-align: center;
+           }
+     ```
+   * Untuk memberi desain pada tampilan `h1` pada `container`:  memasukkan margin `margin-bottom: 20px;`
+   
+   * Untuk memberi desain pada tampilan `.login-form`:  mengeset `text-align` menjadi left dan `padding` auto.
+     
+   * Untuk memberi desain pada tampilan `form-group`: memasukkan styling yang sama dengan yang ada di `login`
+ 
+  ***Membuat kusomisasi pada halaman register***
+ - Senada dengan kustomisasi pada halaman `create_product` yang berfungsi untuk menambah inventory, untuk kustomisasi tampilan `title` saya menambahkan style yang mengedit `font-family` untuk menyesuaikan dengan grand design saya.
+ - Kemudian saya menambahkan blok elemen `<style>` untuk memberi informasi pada file untuk setiap styling yang saya buat per selector dengan detail sebagai berikut:
+   * Untuk memberi desain pada tampilan `body`: mengikuti desain yang sama demgan yang ada pada `login` dan `register`.
+     
+   * Untuk memberi desain pada tampilan `.add`:
+     ```
+         .add {
+             background-color: #fffdfc;
+             border-radius: 5px;
+             box-shadow: 0 0 10px 292727(0, 0, 0, 0.1);
+             padding: 20px;
+             max-width: 600px;
+             width: 100%;
+             text-align: center;
+         }
+     ```
+   * Untuk memberi desain pada tampilan `h1` pada `add-container`:  memasukkan margin `margin-bottom: 20px;`
+   
+   * Untuk memberi desain pada tampilan `.add-form`:
+     ```
+        .add-form {
+             text-align: left;
+             padding: auto;
+         } 
+     ```
+     
+   * Untuk memberi desain pada tampilan `form-group`:
+     ```
+         .form-group {
+             margin-bottom: 15px;
+             padding: auto;
+         }
+ 
+         .form-group label {
+             display: block;
+             margin-bottom: 5px;
+         }
+ 
+         .form-group input {
+             width: 100%;
+             padding: 10px;
+             border: 1px solid #ccc;
+             border-radius: 5px;
+         }
+ 
+         .form-group button {
+             background-color: #007BFF;
+ 
+         }
+     ```
+
+   2. Kustomisasi halaman daftar inventori menjadi lebih berwarna
+***Membuat kusomisasi pada bar navigasi halaman login***
+- Pada tampilan halaman `main` yang menampilkan daftar inventori saya membuat desain agar pada `nav bar` terdapat `logo`, nama logo, dan beberapa elemen yang menampilkan pilihan `Home`, `Sales Overview`, dan `Contacts` yang nantinya bisa dijadikan button untuk ke halaman lainnya. Kemudian saya meletakkan button `logout` pada `nav bar` agar lebih mudah di temukan pada pengguna. Berikut adalah tambahan kode blok `<nav>` yang saya tambahkan:
+  ```
+        <nav class="navbar" style="background-color: #ebe6e4;">
+            <div class="logo" style="color: #292727;">
+                <a style="padding: 0px 15px 0px 15px;"><img src="https://i.pinimg.com/736x/ad/5a/d2/ad5ad2e05f522b2865690d7389d5ff68.jpg"style="width: 70px; height: 70px; margin-right: 10px;"></a>
+                <a style="padding: 9px 0px 9px 0px;">Marsy Apparel</a>            </div>
+            <div class="menu">
+                <ul>
+                    <li>
+                        <a href="#">Home</a>
+                    </li>
+                    <li>
+                        <a href="#">Sales Overview</a>
+                    </li>
+                    <li>
+                        <a href="#">Contacts</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'main:logout' %}" class="ml-auto">
+                        <button class="btn btn-outline-danger" type="button">Logout</button>
+                        </a>
+                    </li>
+                </ul>            
+            </div>
+        </nav>
+  ``` 
+- Setelah menambahkan komponen tersebut, saya menambahkan blok elemen `<style>` yang memberi kustomisasi pada seluruh komponen yang ingin diberi gaya sebagai berikut:
+   * Untuk memberi desain pada tampilan `navbar` :
+     ```
+     .navbar{
+         margin: auto;
+         position: relative;
+     }
+     .navbar-title {
+         font-weight: 700px;
+         float: left;
+         color: #ebe6e4;
+         text-align:left;
+         font-size: 28px;
+         padding:5px;
+         margin-right: 2px; 
+         margin-left: 2px;  
+     }
+     ```
+   * Untuk memberi desain pada tampilan 'logo' :
+     ```
+     .logo a{
+         font-size: 35px;
+         font-weight:normal;
+         float: left;
+         font-family: 'Unna', serif, cursive;
+         text-align: center;
+     }
+     ```
+   * Untuk memberi desain pada tampilan 'menu' : menambahkan style float: right.
+   * Untuk memberi desain pada tampilan 'nav' : 
+     ```
+          nav{
+              width: 100%;
+              margin:auto;
+              display: flex;
+              line-height: 50px;
+              position: sticky;
+              top:0;
+          }     
+     ```
+   * Untuk memberi desain pada tampilan 'nav ul' : 
+    ```
+          nav ul{
+              list-style-type: none;
+              margin: 0;
+              padding: 0;
+              overflow: hidden;
+          }
+    ```
+    * Untuk memberi desain pada tampilan 'nav ul li`:
+      ```
+            nav ul li{
+                float: left;
+            }
+            nav ul li a{
+                color: #292727;
+                font-weight:normal;
+                text-align: center;
+                padding: 0px 16px 0px 16px;
+                text-decoration: none;
+            }
+            nav ul li a:hover{
+                text-decoration: underline;
+            }      
+      ```
+    * Untuk memberi desain pada tampilan `tabel` :
+       ```
+            table {
+                width:90%;
+                border:1px  #b3adad;
+                padding:5px;
+                border-radius: 20px;            
+            }
+            table th {
+                border:1px solid #b3adad;
+                padding:5px;
+                background: #d0dbc3;
+                color: #4e4646;
+            }
+            table td {
+                border:1px solid #b3adad;
+                text-align:center;
+                padding:5px;
+                background: #fcfcfc;
+                color: #4d4d4d;
+
+            }
+
+            table tbody tr td button{
+                background-color: #ebe6e4;
+                border: none;
+                border-radius: 5px;
+            }
+       ```
+    * Untuk memberi desain pada tampilan `body` : Menambahkan warna dengan `background-color : #fffdfc`
