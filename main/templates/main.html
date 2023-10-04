@@ -106,16 +106,13 @@
                 text-align:left;
                 font-size: 28px;
                 padding:5px;
-                margin-right: 2px; /* Untuk jarak ke kanan */
-                margin-left: 2px;  /*Untuk jarak ke kiri */
+                margin-right: 2px; 
+                margin-left: 2px;  
             }
             body{
                 background-color: #fffdfc;
             }
 
-            table tbody tr:last-child{
-                background-color: rgb(247, 247, 124);
-                }
 
         </style>
         <link href="https://fonts.googleapis.com/css2?family=Mulish&family=Unna:wght@700&display=swap" rel="stylesheet">
@@ -139,13 +136,16 @@
                 </thead>
                 <tbody class="table-group-divider last-table">
 
+
                 {% for product in products %}
                     <tr>
                         <td>{{product.name}}</td>
                         <td>{{product.amount}}</td>
                         <td>{{product.description}}</td>
                         <td>
-                            <a href="{% url 'main:delete_product' product.id %}" class="btn btn-danger btn-sm">Delete</a>
+                            <a href="{% url 'main:delete_product' product.id %}">
+                                <button>🗑️</button>
+                            </a>
                         </td>
                         <td>
                             <a href="{% url 'main:increment_product' product.id %}">
@@ -157,7 +157,9 @@
                             </a>
                         </td>
                         <td>
-                            <a href="{% url 'main:edit_product' product.pk %}" class="btn btn-primary btn-sm">Edit</a>
+                            <a href="{% url 'main:edit_product' product.pk %}">
+                                <button>📝</button>
+                            </a>
                         </td>
                     </tr>
                 {% endfor %}
