@@ -1244,9 +1244,13 @@ Untuk memilih antara keduanya bergantung pada kebutuhan proyek dan preferensi pe
         ...
     ```
 
-    
-
 3. Collectstatic
+ - Untuk melakukan collectstatic saya menambahkan kode berikut pada `settings.py` kemudian melakukan `python manage.py collectstatic`:
+    ```
+    STATIC_URL = 'static/'
+
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    ```
 
 4. AJAX DELETE
     a. membuat fungsi `delete_product_ajax` pada `views.py`
