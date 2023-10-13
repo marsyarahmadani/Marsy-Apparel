@@ -13,6 +13,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
+from django.views.decorators.csrf import csrf_exempt
 
 @login_required(login_url='/login')
 def show_main(request):
@@ -118,16 +119,46 @@ def show_json_by_id(request, id):
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 def edit_product(request, id):
-    # Get product berdasarkan ID
     product = Item.objects.get(pk = id)
 
-    # Set product sebagai instance dari form
     form = ProductForm(request.POST or None, instance=product)
 
     if form.is_valid() and request.method == "POST":
-        # Simpan form dan kembali ke halaman awal
         form.save()
         return HttpResponseRedirect(reverse('main:show_main'))
 
     context = {'form': form}
     return render(request, "edit_product.html", context)
+
+def get_product_json(request):
+    product_item = Item.objects.filter(user=request.user)
+    return HttpResponse(serializers.serialize('json', product_item))
+
+@csrf_exempt
+def add_product_ajax(request):
+    if request.method == 'POST':
+        name = request.POST.get("name")
+        amount = request.POST.get("amount")
+        description = request.POST.get("description")
+        user = request.user
+
+        new_product = Item(name=name, amount=amount, description=description, user=user)
+        new_product.save()
+
+        return HttpResponse(b"CREATED", status=201)
+
+    return HttpResponseNotFound()
+
+
+@csrf_exempt
+def delete_product_ajax(request, product_id):
+    if request.method == 'POST':
+        try:
+            product = Item.objects.get(id=product_id)
+            product.delete()
+            return HttpResponse("OK", status=200)
+        except Item.DoesNotExist:
+            return HttpResponse("Produk tidak ada", status=404)
+
+    return HttpResponseNotFound()
+

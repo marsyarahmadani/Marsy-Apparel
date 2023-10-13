@@ -1080,3 +1080,215 @@ contoh: a[target="_blank"]{ color: blue;}
 
 - Hasil akhirnya akan terlihat seperti ini:
 ![image](https://github.com/marsyarahmadani/Marsy-Apparel/assets/116958619/2edfd866-ee43-45da-b20f-150c6f30ff3b)
+
+
+
+# TUGAS 5 SECTION
+
+###  Jelaskan perbedaan antara asynchronous programming dengan synchronous programming.
+**Synchronous Programming:** Dalam pemrograman synchronous, tugas-tugas dieksekusi secara berurutan, satu demi satu. Ketika satu tugas sedang berjalan, maka tugas yang lain harus menunggu hingga tugas sebelumnya selesai. Proses menunggu ini bisa mengakibatkan aplikasi menjadi lebih lambat jika ada tugas yang memakan waktu lama. 
+
+**Asynchronous Programming:** Dalam pemrograman asynchronous, tugas-tugas dieksekusi secara bersamaan atau semua sekaligus. Artinya, tugas-tugas tidak harus menunggu tugas yang sebelumnya selesai. Proses ini memungkinkan aplikasi untuk menjalankan tugas yang memakan waktu lama tanpa menghentikan tugas-tugas lain sehingga tugas-tugas selesai lebih cepat.
+
+
+###  Dalam penerapan JavaScript dan AJAX, terdapat penerapan paradigma event-driven programming. Jelaskan maksud dari paradigma tersebut dan sebutkan salah satu contoh penerapannya pada tugas ini.
+**Paradigma event-driven programming** berfokus pada penggunaan event dan callback functions untuk menangani tindakan dan peristiwa yang terjadi dalam aplikasi. Pada tugas ini, contohnya adalah penggunaan event pada tombol "Add Product by AJAX". Ketika tombol ini diklik, event handler diaktifkan, dan kemudian fungsi yang sesuai dijalankan. Ini memungkinkan tindakan yang dipicu oleh pengguna (seperti menambah produk) untuk diterapkan secara asinkron.
+
+###  Jelaskan penerapan asynchronous programming pada AJAX.
+Dalam konteks AJAX, asynchronous programming memungkinkan permintaan HTTP (seperti permintaan data dari server) untuk dijalankan secara asynchronous tanpa menghentikan eksekusi program. Dengan menggunakan callback functions, aplikasi dapat terus berjalan sementara menunggu respons dari server. Hal ini membuat aplikasi menjadi lebih responsif dan cepat.
+
+###  Pada PBP kali ini, penerapan AJAX dilakukan dengan menggunakan Fetch API daripada library jQuery. Bandingkanlah kedua teknologi tersebut dan tuliskan pendapat kamu teknologi manakah yang lebih baik untuk digunakan.
+ - **Fetch API:** Fetch API adalah API bawaan dalam JavaScript. Fetch API menyediakan antarmuka untuk melakukan permintaan HTTP sehingga terasa lebih modern dan ringan daripada jQuery. Fetch API lebih berorientasi pada Promise dan memberikan cara yang lebih kuat dan terstruktur untuk mengelola permintaan HTTP.
+
+ - **jQuery:** jQuery adalah sebuah library JavaScript yang populer dan memiliki fitur-fitur khusus untuk menyederhanakan tugas-tugas umum dalam pemrograman web, termasuk AJAX. Dibanding Fetch API, jQuery memiliki ukuran yang lebih besar dan mungkin terasa berlebihan jika hanya digunakan untuk operasi AJAX.
+
+Untuk memilih antara keduanya bergantung pada kebutuhan proyek dan preferensi pengembang. Jika kode hanya memerlukan operasi AJAX, Fetch API adalah pilihan yang lebih ringan dan modern. Namun jika kode membutuhkan kompabilitas lintas browser dengan fungsi yang disederhanakan maka akan lebih cocok menggunakan jQuery.
+
+###  Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+
+***1. AJAX GET***
+- Pertama saya mengubah terlebih dahulu yang sebelumnya kode saya menampilkan items user menggunakan tabel menjadi cards dengan menghapus tabel dan kemudian menambahkan kobe berikut:
+```
+    <div id="product_cards" class="card"></div>
+```
+- Kemudian saya masukkan kode yang mengimplementasikan modal pada fitur `add product` :
+```
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="form" onsubmit="return false;">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="name" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="name" name="name"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="amount" class="col-form-label">Amount:</label>
+                            <input type="number" class="form-control" id="amount" name="amount"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="col-form-label">Description:</label>
+                            <textarea class="form-control" id="description" name="description"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Item</button>
+                </div>
+            </div>
+        </div>
+    </div>
+```
+2. AJAX GET dan AJAX POST
+- Kemudian saya membuat fungsi-fungsi yang digunakan untuk menggunakan AJAX GET:
+    a. Membuat fungsi `get_products_json` pada `views.py` yang ada di `main` untuk mengambil item yang sesuai dengan milik user. Kemudian dibuat pathnya dan masukkan ke `urls.py`.
+    ```
+    def get_product_json(request):
+    product_item = Item.objects.filter(user=request.user)
+    return HttpResponse(serializers.serialize('json', product_item))
+
+    ```
+- Selanjutnya saya membuat fungsi-fungsi yang digunakan untuk mengapus dan membuat produk menggunakan AJAX POST.
+    a. membuat fungsi `add_product_ajax` pada `views.py`
+    ```
+    @csrf_exempt
+    def add_product_ajax(request):
+        if request.method == 'POST':
+            name = request.POST.get("name")
+            amount = request.POST.get("amount")
+            description = request.POST.get("description")
+            user = request.user
+
+            new_product = Item(name=name, amount=amount, description=description, user=user)
+            new_product.save()
+
+            return HttpResponse(b"CREATED", status=201)
+
+        return HttpResponseNotFound()
+    ```
+
+
+- Kemudian untuk menggunakan fungsi-fungsi tersebut saya menambahkan blok  `<script>` yang sesuai dengan kebutuhan program pada `main.html`
+
+    a. Membuat `<script>` yang sesuai dengan `get_products_json` di `main.html`
+
+    ```
+        <script>
+        async function getProducts() {
+            return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
+        }
+    
+        ...
+    ```
+    b. Membuat `<script>` yang sesuai dengan `add_product_ajax` di `main.html` yaitu dengan merefresh produk menggunakan fungsi `refreshProducts()` sebelum fungsi `addProduct`.
+    ```
+        ...
+        
+        async function refreshProducts() {
+            const productCards = document.getElementById("product_cards");
+            productCards.innerHTML = ""; // Clear existing cards
+
+            const products = await getProducts();
+            let cardRow = null;
+
+            products.forEach((item, index) => {
+                if (index % 3 === 0) {
+                    cardRow = document.createElement("div");
+                    cardRow.classList.add("row");
+                }
+
+                const card = document.createElement("div");
+                card.classList.add("card", "col-md-3", "mb-3");
+                card.setAttribute('data-product-id', item.id);
+                card.innerHTML = `
+                    <img src="https://media.theeverygirl.com/wp-content/uploads/2021/01/the-everygirl-questions-to-ask-while-cleaning-out-your-closet-gallery.jpg" alt="Product Image">
+                    <h1>${item.fields.name}</h1>
+                    <div class="item_amount">
+                            <a type="button" style="border: none; text-decoration: none; color: #313131; background-color: rgb(245, 238, 220); border-radius: 5px;" href="decrement-product/${item.pk}"> - </a>
+                            <a style="background-color: rgb(235, 224, 210); background-size: 7px; font-size: larger;">.     ${item.fields.amount}     .</a>
+                            <a type="button" style="border: none; text-decoration: none; color: #313131; background-color: rgb(245, 238, 220); border-radius: 5px;" href="increment-product/${item.pk}"> + </a>
+                    </div>
+                    <div>
+                        <a>${item.fields.description}</a>
+                        <p></p>
+
+                        <button class="btn btn-danger" onclick="deleteProduct(${item.pk})">Delete</button>
+                    </div>
+                `;
+
+                cardRow.appendChild(card);
+                productCards.appendChild(cardRow);
+            });
+        }
+        refreshProducts();
+
+        function addProduct() {
+            fetch("{% url 'main:add_product_ajax' %}", {
+                method: "POST",
+                body: new FormData(document.querySelector('#form'))
+            }).then(refreshProducts)
+
+            window.location.reload();
+            document.getElementById("form").reset()
+
+            return false
+        }
+
+        document.getElementById("button_add").onclick = addProduct
+        ...
+    ```
+
+    
+
+3. Collectstatic
+
+4. AJAX DELETE
+    a. membuat fungsi `delete_product_ajax` pada `views.py`
+    ```
+    @csrf_exempt
+    def delete_product_ajax(request, product_id):
+        if request.method == 'POST':
+            try:
+                product = Item.objects.get(id=product_id)
+                product.delete()
+                return HttpResponse("OK", status=200)
+            except Item.DoesNotExist:
+                return HttpResponse("Produk tidak ada", status=404)
+
+        return HttpResponseNotFound()
+
+    ```
+
+    b. Membuat `<script>` yang sesuai dengan `delete_product_ajax` di `main.html`
+
+    ```
+        ...
+
+        async function deleteProduct(productId) {
+        const response = await fetch(`{% url 'main:delete_product_ajax' 0 %}`.replace("0", productId), {
+            method: "POST",
+        });
+
+        if (response.status === 200) {
+            refreshProducts();
+        } else if (response.status === 404) {
+            console.log("Produk tidak ada");
+        } else {
+            console.log("Error deleting product");
+        }
+    }
+
+
+    </script>
+    ```
+    - Kemudian saya mengupdate button `delete` pada `main.html` dengan menambahkan button berikut :
+    ```
+    <button class="btn btn-danger" onclick="deleteProduct(${item.pk})">Delete</button>
+
+    ```

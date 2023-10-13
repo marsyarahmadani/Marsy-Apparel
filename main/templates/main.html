@@ -46,6 +46,16 @@
             .menu{
                 float: right;                
             }
+
+            button{
+                background-color: rgb(245, 238, 220);
+                border-radius: 5px;
+            }
+
+            button:hover {
+                box-shadow: -1px 3px 10px 0px rgba(0, 0, 0, 0.8);
+            }
+
             nav{
                 width: 100%;
                 margin:auto;
@@ -73,111 +83,173 @@
             nav ul li a:hover{
                 text-decoration: underline;
             }
-            table {
-                width:90%;
-                border:1px  #b3adad;
-                padding:5px;
-                border-radius: 20px;            
+            section {
+                max-width: 1200px; 
+                margin: 0 auto;
+                padding: 20px;
+                text-align: center;
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
             }
-            table th {
-                border:1px solid #b3adad;
-                padding:5px;
-                background: #d0dbc3;
-                color: #4e4646;
+            .card {
+                border: 1px solid #ebe6e4;
+                border-radius: 10px;
+                padding: 20px;
+                margin: 10px;
+                box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.4);
+                transition: all 0.25s linear;
             }
-            table td {
-                border:1px solid #b3adad;
-                text-align:center;
-                padding:5px;
-                background: #fcfcfc;
-                color: #4d4d4d;
-
-            }
-
-            table tbody tr td button{
-                background-color: #ebe6e4;
-                border: none;
-                border-radius: 5px;
-            }
-            .navbar-title {
-                font-weight: 700px;
-                float: left;
-                color: #ebe6e4;
-                text-align:left;
-                font-size: 28px;
-                padding:5px;
-                margin-right: 2px; 
-                margin-left: 2px;  
-            }
-            body{
-                background-color: #fffdfc;
+            
+            .card:hover {
+                box-shadow: -1px 10px 29px 0px rgba(0, 0, 0, 0.8);
             }
 
-
+            
+            .card img {
+                width: 100%;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+            }
+            
+            .card h1 {
+                font-family: "IBM Plex Sans", sans-serif;
+                font-weight: 50;
+                text-transform: uppercase;
+                font-size: 20px;
+                margin-top: 10px;
+            }
+            
+            .card p {
+                font-size: 16px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
         </style>
-        <link href="https://fonts.googleapis.com/css2?family=Mulish&family=Unna:wght@700&display=swap" rel="stylesheet">
-
     </head>
+
+<body style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+    <a class="welcome" style="color: #313131; font-family: 'Mulish'; font-size: 24px; text-decoration: none; margin-top: 20px;">-* Hello, {{ name }} *-</a>
+    <p style="font-family: 'Mulish';"> Here are <b>{{ item_counter }}</b> available clothing on stock</p>
+
+    <div id="product_cards" class="card"></div>
+
+    <!-- Membuat modal untuk tampilan add Product -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="form" onsubmit="return false;">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="name" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="name" name="name"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="amount" class="col-form-label">Amount:</label>
+                            <input type="number" class="form-control" id="amount" name="amount"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="col-form-label">Description:</label>
+                            <textarea class="form-control" id="description" name="description"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Item</button>
+                </div>
+            </div>
+        </div>
+    </div>
     
-    <body style="display: flex; flex-direction: column; align-items: center; text-align: center;">
-        <a class="welcome" style="color: #313131; font-family: 'Mulish'; font-size: 24px; text-decoration: none; margin-top: 20px;">-* Hello, {{ name }} *-</a>
-        <p style="font-family: 'Mulish';"> Here are <b>{{ item_counter }}</b> available clothings on stock</p>
-        <table style="margin-top: 20px;">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Amount</th>
-                        <th>Description</th>
-                        <th>Delete</th>
-                        <th>+/-</th>
-                        <th>Edit</th>
+    <br />
+    <script>
+        async function getProducts() {
+            return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
+        }
+    
 
-                    </tr>
-                </thead>
-                <tbody class="table-group-divider last-table">
+        async function refreshProducts() {
+            const productCards = document.getElementById("product_cards");
+            productCards.innerHTML = ""; // Clear existing cards
+
+            const products = await getProducts();
+            let cardRow = null;
+
+            products.forEach((item, index) => {
+                if (index % 3 === 0) {
+                    cardRow = document.createElement("div");
+                    cardRow.classList.add("row");
+                }
+
+                const card = document.createElement("div");
+                card.classList.add("card", "col-md-3", "mb-3");
+                card.setAttribute('data-product-id', item.id);
+                card.innerHTML = `
+                    <img src="https://media.theeverygirl.com/wp-content/uploads/2021/01/the-everygirl-questions-to-ask-while-cleaning-out-your-closet-gallery.jpg" alt="Product Image">
+                    <h1>${item.fields.name}</h1>
+                    <div class="item_amount">
+                            <a type="button" style="border: none; text-decoration: none; color: #313131; background-color: rgb(245, 238, 220); border-radius: 5px;" href="decrement-product/${item.pk}"> - </a>
+                            <a style="background-color: rgb(235, 224, 210); background-size: 7px; font-size: larger;">.     ${item.fields.amount}     .</a>
+                            <a type="button" style="border: none; text-decoration: none; color: #313131; background-color: rgb(245, 238, 220); border-radius: 5px;" href="increment-product/${item.pk}"> + </a>
+                    </div>
+                    <div>
+                        <a>${item.fields.description}</a>
+                        <p></p>
+
+                        <button class="btn btn-danger" onclick="deleteProduct(${item.pk})">Delete</button>
+                    </div>
+                `;
+
+                cardRow.appendChild(card);
+                productCards.appendChild(cardRow);
+            });
+        }
+        refreshProducts();
+
+        function addProduct() {
+            fetch("{% url 'main:add_product_ajax' %}", {
+                method: "POST",
+                body: new FormData(document.querySelector('#form'))
+            }).then(refreshProducts)
+
+            window.location.reload();
+            document.getElementById("form").reset()
+
+            return false
+        }
+
+        document.getElementById("button_add").onclick = addProduct
+        
+        async function deleteProduct(productId) {
+        const response = await fetch(`{% url 'main:delete_product_ajax' 0 %}`.replace("0", productId), {
+            method: "POST",
+        });
+
+        if (response.status === 200) {
+            refreshProducts();
+        } else if (response.status === 404) {
+            console.log("Produk tidak ada");
+        } else {
+            console.log("Error deleting product");
+        }
+    }
 
 
-                {% for product in products %}
-                    <tr>
-                        <td>{{product.name}}</td>
-                        <td>{{product.amount}}</td>
-                        <td>{{product.description}}</td>
-                        <td>
-                            <a href="{% url 'main:delete_product' product.id %}">
-                                <button>🗑️</button>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="{% url 'main:increment_product' product.id %}">
-                                <button>+</button>
-                            </a>
+    </script>
+    
+    
+    <button style="border: none; border-radius: 3px;" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product</button>
 
-                            <a href="{% url 'main:decrement_product' product.id %}" >
-                                <button>-</button>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="{% url 'main:edit_product' product.pk %}">
-                                <button>📝</button>
-                            </a>
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
+    <p></p>
+    <h5 style="font-family: 'Unna', cursive; color: #313131; font-size: 16px;">Sesi terakhir login: {{ last_login }}</h5>
 
-            </table>
-            <p></p>
-            <h5 style="font-family: 'Unna', cursive; color: #313131; font-size: 16px;">Sesi terakhir login: {{ last_login }}</h5>
-      
-        <br />
+    <p></p>
 
-        <a href="{% url 'main:create_product' %}">
-            <button style="border: none; border-radius: 3px;">
-                Add New Product
-            </button>
-        </a>
-        <p></p>
-
-    </body>
-
+</body>
 {% endblock content %}
